@@ -46,7 +46,7 @@ class Unsigned(Constrained):
         _name = "Unsigned"
         if len(self.name) > 0:
             _name = self.name
-        return "{name}{{Bits={bits}, Value={value}}}".format(name=_name, bits=self.bits, value=self.value)
+        return "Unsigned{{Name={name}, Bits={bits}, Value={value}}}".format(name=_name, bits=self.bits, value=self.value)
 
     def __eq__(self, b):
         if not isinstance(b, Constrained):

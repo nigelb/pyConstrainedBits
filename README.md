@@ -10,5 +10,5 @@ pyConstrainedBits is a python library to assist making calculations with only th
 >>> print(a + 2)
 1
 >> a + 3
-uint3_t{Bits=3, Value=2}
+Unsigned{Name=uint3_t, Bits=3, Value=2}
 ```
