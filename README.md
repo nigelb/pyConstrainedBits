@@ -9,4 +9,6 @@ pyConstrainedBits is a python library to assist making calculations with only th
 >>> a = uint3_t(7)
 >>> print(a + 2)
 1
+>> a + 3
+uint3_t{Bits=3, Value=2}
 ```
