@@ -1,0 +1,76 @@
+# pyConstrainedBits is a python library to assist making calculations with only
+# the specified number of bits.
+#
+# Copyright (c) 2023 nigelb
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import unittest
+
+
+from constrained.bits import Unsigned
+
+
+class ConstrainedTests(unittest.TestCase):
+    def test_addition_1(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(2)
+        b = uint3_t(2)
+        c = a + b
+        self.assertEqual(c, 4)
+
+    def test_addition_overflow(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(6)
+        b = uint3_t(7)
+        c = a + b
+        self.assertEqual(c, 5)
+
+    def test_subtraction_1(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(2)
+        b = uint3_t(2)
+        c = a - b
+        self.assertEqual(c, 0)
+
+    def test_subtraction_underflow(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(2)
+        b = uint3_t(3)
+        c = a - b
+        self.assertEqual(c, 7)
+
+    def test_left_shift(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(1)
+        b = uint3_t(2)
+        c = a << b
+        self.assertEqual(c, 4)
+
+    def test_right_shift(self):
+        uint3_t = Unsigned(3, name="uint3_t")
+        a = uint3_t(4)
+        b = uint3_t(2)
+        c = a >> b
+        self.assertEqual(c, 1)
+
+
+
+if __name__ == "__main__":
+    unittest.main()
